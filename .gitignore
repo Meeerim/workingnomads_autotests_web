@@ -1,0 +1,8 @@
+.pytest_cache/
+.idea/
+.allure_results/
+.tests/allure_results/
+.venv/
+.model/pages/__pycache__/
+
+

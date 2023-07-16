@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "workingnomads-autotest-web"
+version = "0.1.0"
+description = ""
+authors = ["Meerim Sabytkyzy <skmeerim1999@gmail.com>"]
+readme = "README.md"
+packages = [{include = "workingnomads_autotest_web"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytest = "^7.2.2"
+selene = "2.0.0b17"
+allure-pytest = "^2.13.0"
+
+[tool.pytest.ini_options]
+addopts="-vv --alluredir=allure-results"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

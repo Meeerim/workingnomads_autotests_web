@@ -1,4 +1,4 @@
-from selene import browser, be
+from selene import browser, be, have
 
 
 class JobBookmarksPage:
@@ -7,7 +7,5 @@ class JobBookmarksPage:
         return self
 
     def verify_one_job_added(self):
-        parent_element = browser.element('.ng-scope[ng-repeat="job in bookmarkedJobs"]')
-        assert len(parent_element) == 1
+        browser.element('#job-47447').should(be.visible)
         return self
-

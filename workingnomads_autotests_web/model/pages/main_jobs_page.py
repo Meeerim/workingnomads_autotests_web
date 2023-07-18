@@ -1,9 +1,8 @@
-from selene import browser, have
+from selene import browser, have, be, command
 
 
 class MainJobsPage:
     def verify_main_page(self):
-        browser.open('/jobs')
         browser.should(have.url_containing('/jobs'))
         return self
 
@@ -12,24 +11,21 @@ class MainJobsPage:
         return self
 
     def filter_by_category(self):
-        browser.element('.search-bar__action__button select').click()
-        browser.all('.category.key').element_by(have.exact_text('Human Resources')).click()
+        browser.element('.side-menu-categories.search-bar__action').click()
+        browser.all('.ng-binding').element_by(have.exact_text('Human Resources')).click()
         return self
 
     def enter_key_words(self):
-        browser.element('#q').type('recruit')
-        browser.all('.ng-binding').element_by(have.text('recruiting')).click()
-        browser.element('#q').type('hiring')
-        browser.all('.ng-binding').element_by(have.text('hiring')).click()
+        browser.all('.ng-binding').element_by(have.text('recruiting')).click().perform(command.js.scroll_into_view)
         return self
 
     def filter_by_position_type(self):
-        browser.element('.search-bar__action__label span').click()
-        browser.all('.positionType.id').element_by(have.text('Full time')).click()
+        browser.element('.side-menu-positionTyoes').click()
+        browser.all('.ng-binding').element_by(have.text('Full-time')).click()
         return self
 
     def save_job_as_a_bookmark(self):
-        browser.element('.fa fa-star').click()
+        browser.element('#job-47447 i.fa.fa-star').click()
         return self
 
 

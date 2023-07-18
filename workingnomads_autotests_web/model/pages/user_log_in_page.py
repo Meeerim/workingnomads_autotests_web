@@ -18,10 +18,6 @@ class LogInPage:
         browser.element('[name=commit]').click()
         return self
 
-    def check_for_redirected_url(self):
-        browser.should(have.url_containing('/jobs'))
-        return sel
-
     def check_expected_error_message(self):
         browser.element('.alert').should(have.text('The e-mail address and/or password you specified are '
                                                                 'not correct.'))

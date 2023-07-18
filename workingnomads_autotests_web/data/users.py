@@ -7,8 +7,8 @@ class User:
     first_name: str = "Meerim"
     last_name: str = "Sk"
     email: str = "skmeerim1999@gmail.com"
-    existed_email: str = "skmeerim@gmail.com"
-    invalid_password: str = "Password12345"
+    invalid_email: str = "skmeerim@mail.ru"
+    wrong_password: str = "Password12345"
     password: str = "Password0805"
 
 

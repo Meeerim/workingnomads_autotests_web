@@ -19,19 +19,8 @@ class AccountSettingPage:
         return self
 
     def check_for_successful_update(self):
-        browser.element('').should(have.text(''))
+        browser.element('.alert').should(have.text('Account details were updated!'))
         return self
 
-    def open_delete_account(self):
-        browser.open('/users/delete_account')
-        return self
 
-    def choose_delete_account(self):
-        browser.element('#user-form').click()
-        browser.element('.btn.btn-danger.btn-ok').click()
-        return self
-
-    def account_deleted_check(self):
-        browser.element('.alert').should(have.text('Account deleted.'))
-        return self
 

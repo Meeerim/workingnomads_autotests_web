@@ -4,7 +4,7 @@ from workingnomads_autotests_web.model.pages.account_settings_page import Accoun
 from workingnomads_autotests_web.model.pages.job_bookmarks_page import JobBookmarksPage
 from workingnomads_autotests_web.model.pages.main_jobs_page import MainJobsPage
 from workingnomads_autotests_web.model.pages.user_log_in_page import LogInPage
-from selene.support.shared import browser
+from selene import browser
 
 from workingnomads_autotests_web.model.pages.user_sing_up_page import UserSignUpPage
 

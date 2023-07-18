@@ -1,5 +1,4 @@
-from selene import have, command
-from selene.support.shared import browser
+from selene import browser, have, command
 
 
 class UserSignUpPage:

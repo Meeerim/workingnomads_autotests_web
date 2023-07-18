@@ -3,7 +3,7 @@ from urllib import request
 
 import pytest
 from dotenv import load_dotenv
-from selene.support.shared import browser
+from selene  import browser
 from selenium.webdriver.chrome.options import Options
 from workingnomads_autotests_web.data.users import user
 from workingnomads_autotests_web.model.application import app
@@ -28,7 +28,7 @@ def pytest_adoption(parser):
 
 
 @pytest.fixture(scope="function", autouse=True)
-def open_browser():
+def setup_browser():
     browser_version = request.config.getoption('--browser_version')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
     options = Options()

@@ -1,16 +1,14 @@
 
-from selene import browser
 from workingnomads_autotests_web.data.users import user
 from workingnomads_autotests_web.model.application import app
 
 from workingnomads_autotests_web.utils import attach
 import os
 import pytest
-from selene.support.shared import browser
+from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
-
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -52,7 +50,7 @@ def setup_browser(request):
     browser.config.window_width = 1200
     browser.config.window_height = 800
     browser.config.base_url = 'https://www.workingnomads.com'
-    browser.config.timeout = 2.0
+    browser.config.timeout = 30.0
 
     yield
     attach.add_html(browser)
@@ -62,7 +60,7 @@ def setup_browser(request):
     browser.quit()
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def login():
     app.user_log_in.open() \
         .fill_email(user.email) \

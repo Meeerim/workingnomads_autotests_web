@@ -1,15 +1,16 @@
-import os
-from urllib import request
 
-import pytest
-from dotenv import load_dotenv
-from selene  import browser
-from selenium.webdriver.chrome.options import Options
+from selene import browser
 from workingnomads_autotests_web.data.users import user
 from workingnomads_autotests_web.model.application import app
 
 from workingnomads_autotests_web.utils import attach
+import os
+import pytest
+from selene.support.shared import browser
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from dotenv import load_dotenv
+
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -20,7 +21,7 @@ def load_env():
 DEFAULT_BROWSER_VERSION = "100.0"
 
 
-def pytest_adoption(parser):
+def pytest_addoption(parser):
     parser.addoption(
         '--browser_version',
         default='100.0'
@@ -28,7 +29,7 @@ def pytest_adoption(parser):
 
 
 @pytest.fixture(scope="function", autouse=True)
-def setup_browser():
+def setup_browser(request):
     browser_version = request.config.getoption('--browser_version')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
     options = Options()
@@ -37,7 +38,7 @@ def setup_browser():
         "browserVersion": browser_version,
         "selenoid:options": {
             "enableVNC": True,
-            "enableVideo": True
+            "enableVideo": True,
         }
     }
     options.capabilities.update(selenoid_capabilities)
@@ -53,7 +54,7 @@ def setup_browser():
     browser.config.base_url = 'https://www.workingnomads.com'
     browser.config.timeout = 2.0
 
-    yield browser
+    yield
     attach.add_html(browser)
     attach.add_screenshot(browser)
     attach.add_logs(browser)

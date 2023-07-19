@@ -4,5 +4,7 @@
 .tests/allure-results/
 .venv/
 .model/pages/__pycache__/
+.env
+
 
 

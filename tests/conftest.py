@@ -37,11 +37,18 @@ def pytest_addoption(parser):
     )
 
 
+
+
 @pytest.fixture(scope="function", autouse=True)
 def setup_browser(request):
     browser_version = request.config.getoption('--browser_version')
     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
     options = Options()
+    options.add_argument("--disable-notifications")  # Disable notifications
+    options.add_argument("--disable-popup-blocking")  # Disable pop-up blocking
+    options.add_argument("--enable-automation")  # Enable automation to accept cookies automatically
+    options.add_argument("--start-maximized")  # Start the browser in maximized mode
+    options.add_argument("--no-sandbox")
     selenoid_capabilities = {
         "browserName": "chrome",
         "browserVersion": browser_version,
@@ -63,12 +70,6 @@ def setup_browser(request):
     browser.config.window_width = 1200
     browser.config.window_height = 800
     browser.config.base_url = 'https://www.workingnomads.com'
-    try:
-        accept_button = browser.all(have.text('cookie-accept-button'))
-        accept_button.click()
-    except NoSuchElementException:
-        # If the element is not found, just continue with the test as it may not be present
-        pass
 
     load_dotenv()
 

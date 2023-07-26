@@ -70,7 +70,6 @@ def setup_browser(request):
         # If the element is not found, just continue with the test as it may not be present
         pass
 
-
     load_dotenv()
 
     yield
